@@ -5,7 +5,9 @@ declare global {
     interface DateConstructor {
         /**Returns a new date representing the start of the current day. */
         today(): Date;
-        /**Returns a value indicating whether the specified year is a leap year. */
+        /**Returns a value indicating whether the specified year is a leap year.
+         * @param year The year to be checked.
+         */
         isLeapYear(year: number): boolean;
         /**Returns the number of days in the specified month on the specified year.
          * @param year The full year in which to check.
@@ -24,31 +26,57 @@ declare global {
     interface Date {
         /**Returns a new `Date` which represents the same point in time as the source date. */
         clone(): Date;
-        /**Returns a new `Date` which is the number of specified days after the source date.
+        /**Returns a new `Date` which is the specified number of days after the source date.
          * @param days The number of days to add, this may be positive or negative.
          */
         addDays(days: number): Date;
-
-        //TODO: implement these
-        startOfMonth(): Date;
-        startOfYear(): Date;
+        /**Returns a new `Date` which is the specified number of months after the source date.
+         * > NOTE: if the source date is on a day of the month higher than the number of days in the result month, the last day of that month will be returned.
+         * @param months The number of months to add, this may be positive or negative.
+         */
         addMonths(months: number): Date;
+        /**Returns a new `Date` which is the specified number of years after the source date.
+         * @param years The number of years to add, this may be positive or negative.
+         */
         addYears(years: number): Date;
-        addHours(hours: number): Date;
-        addMinutes(minutes: number): Date;
-        addSeconds(seconds: number): Date;
+        /**Returns a new `Date` which is the specified number of milliseconds after the source date.
+         * @param ms The number of milliseconds to be added, this may be positive or negative.
+         */
         addMs(ms: number): Date;
+        /**Returns a new `Date` which is the specified number of seconds after the source date.
+         * @param seconds The number of seconds to be added, this may be positive or negative.
+         */
+        addSeconds(seconds: number): Date;
+        /**Returns a new `Date` which is the specified number of minutes after the source date.
+         * @param minutes The number of minutes to be added, this may be positive or negative.
+         */
+        addMinutes(minutes: number): Date;
+        /**Returns a new `Date` which is the specified number of hours after the source date.
+         * @param hours The number of hours to be added, this may be positive or negative.
+         */
+        addHours(hours: number): Date;
+        /**Returns a value to indicate whether the source date is before (-1), after (+1) or equal to the specified date (0).
+         * @param other The date to compare the source date against.
+         */
         compare(other: Date): -1 | 0 | 1;
+        /**Returns a value indicating whether the specified year is a leap year.*/
         isLeapYear(): boolean;
+        /**Returns the number of days in the specified month on the specified year.*/
         daysInMonth(): 31 | 30 | 29 | 28;
+        /**Returns the age in _whole_ years of a person born on the source date.
+         * @param atDate Optionally override the date at which the age is calculated; if undefined, the current date will be used.
+         */
         getAge(atDate?: Date): number;
-
         /**Returns a value indicating whether the source date is on the same day as `other`
          * @param other The date to compare against.
          */
         isOnSameDayAs(other: Date): boolean;
         /**Returns a new `Date` representing the first instant of the source date's day. */
         startOfDay(): Date;
+        /**Returns a new `Date` representing the start of the first day of the source date's month. */
+        startOfMonth(): Date;
+        /**Returns a new `Date` representing the first millisecond of the source date's year. */
+        startOfYear(): Date;
         /**Returns a value indicating whether the source date represents the same point in time as `other`
          * @param other The date to compare against.
          */
@@ -114,6 +142,39 @@ Date.prototype.clone = function (this) {
     return new Date(this.getTime());
 }
 
+Date.prototype.compare = function (this, other) {
+    const t = this.getTime(), o = other?.getTime();
+    return t > o
+        ? 1
+        : t < o
+            ? -1
+            : 0;
+}
+
+Date.prototype.isLeapYear = function (this) {
+    return Date.isLeapYear(this.getFullYear());
+}
+
+Date.prototype.daysInMonth = function (this) {
+    return Date.daysInMonth(this.getFullYear(), this.getMonth());
+}
+
+Date.prototype.getAge = function (this, atDate = new Date(Date.now())) {
+    const
+        years = atDate.getFullYear() - this.getFullYear(),
+        m = atDate.getMonth() - this.getMonth();
+
+    return m === 0
+        ? (
+            atDate.getDate() < this.getDate()
+                ? years - 1
+                : years
+        )
+        : (m < 0
+            ? years - 1
+            : years);
+}
+
 Date.prototype.addDays = function (this, days) {
     let result = new Date(this.getTime());
     result.setDate(this.getDate() + days);
@@ -135,12 +196,49 @@ Date.prototype.addMonths = function (this, months) {
     return new Date(year, month, Math.min(this.getDate(), Date.daysInMonth(year, month)));
 }
 
+Date.prototype.addYears = function (this, years) {
+    const year = this.getFullYear() + Math.trunc(years);
+    const d = new Date(this.getTime());
+
+    if (this.getMonth() === 1 && this.getDate() === 29 && !Date.isLeapYear(year)) {
+        d.setDate(28);
+    }
+
+    d.setFullYear(year);
+
+    return d;
+}
+
+Date.prototype.addMs = function (this, ms) {
+    return new Date(this.getTime() + ms);
+}
+
+Date.prototype.addSeconds = function (this, seconds) {
+    return new Date(this.getTime() + (seconds * 1000));
+}
+
+Date.prototype.addMinutes = function (this, minutes) {
+    return new Date(this.getTime() + (minutes * 60000));
+}
+
+Date.prototype.addHours = function (this, hours) {
+    return new Date(this.getTime() + (hours * 3600000));
+}
+
 Date.prototype.isOnSameDayAs = function (this, other) {
     return !!other && new Date(this.getFullYear(), this.getMonth(), this.getDate()).getTime() === new Date(other.getFullYear(), other.getMonth(), other.getDate()).getTime();
 }
 
 Date.prototype.startOfDay = function (this) {
     return new Date(this.getFullYear(), this.getMonth(), this.getDate());
+}
+
+Date.prototype.startOfMonth = function (this) {
+    return new Date(this.getFullYear(), this.getMonth(), 1);
+}
+
+Date.prototype.startOfYear = function (this) {
+    return new Date(this.getFullYear(), 0, 1);
 }
 
 Date.prototype.isEqualTo = function (this, other) {
@@ -300,19 +398,17 @@ Date.prototype.format = function formatDate(this, pattern, dayNames = ["Sunday",
     }
 
     if (result.indexOf("{25}") > -1) {
-        const o = this.getTimezoneOffset(), h = Math.abs((o / 60)).toFixed(0), m = Math.abs(o % 60);
+        const o = this.getTimezoneOffset(), h = Math.trunc(Math.abs((o / 60))).toString(), m = Math.abs(o % 60);
         result = result.replace(/\{25\}/g, `${o > 0 ? "+" : "-"}${h.padStart(2, "0")}:${m.toString().padStart(2, "0")}`);
     }
     if (result.indexOf("{26}") > -1) {
         const h = this.getTimezoneOffset() / 60;
-        result = result.replace(/\{26\}/g, h >= 0 ? h.toFixed(0).padStart(2, "0") : `-${Math.abs(h).toFixed(0).padStart(2, "0")}`)
+        result = result.replace(/\{26\}/g, h >= 0 ? h.toFixed(0).padStart(2, "0") : `-${Math.trunc(Math.abs(h)).toString().padStart(2, "0")}`)
     }
     if (result.indexOf("{27}") > -1) {
         const h = this.getTimezoneOffset() / 60;
-        result = result.replace(/\{27\}/g, h >= 0 ? h.toFixed(0) : `-${Math.abs(h).toFixed(0)}`)
+        result = result.replace(/\{27\}/g, h >= 0 ? h.toFixed(0) : `-${Math.trunc(Math.abs(h))}`)
     }
-
-    // applying tokens which support custom strings last, since we don't know what tokens might be in the custom strings
 
     if (result.indexOf("{28}") > -1) {
         result = result.replace(/\{28\}/g, this.getHours() > 11 ? pm : am);

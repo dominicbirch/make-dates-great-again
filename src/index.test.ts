@@ -272,7 +272,7 @@ describe("addMs", function () {
 //TODO: add hours
 //TODO: compare
 //TODO: isLeapYear, days in month (defers to static)
-//TODO: get age
+
 
 describe("isOnSameDayAs", function () {
     it("returns false when comparing to null or undefined", () => {
@@ -555,5 +555,54 @@ describe("format", function () {
         const result = subject.format("$dddd~[MMMM],d\n\t@hh/h|mm&s.FFF/FF/F\n»K/zz/z");
 
         expect(result).toStrictEqual("$Saturday~[May],28\n\t@01/1|00&0.//\n»-01:00/-01/-1");
+    });
+});
+
+//TODO: get age
+describe("getAge", function () {
+    it("calculates correct age when birthday is today", () => {
+        const
+            today = Date.today(),
+            subject = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+
+        const result = subject.getAge();
+
+        expect(result).toStrictEqual(18);
+    });
+    it("calculates correct age when birthday was a previous day this month", () => {
+        const
+            today = Date.today(),
+            subject = new Date(today.getFullYear() - 21, today.getMonth(), 1);
+
+        const result = subject.getAge(new Date(today.getFullYear(), today.getMonth(), 28));
+
+        expect(result).toStrictEqual(21);
+    });
+    it("calculates correct age when birthday was a previous month", () => {
+        const
+            today = Date.today(),
+            subject = new Date(today.getFullYear() - 25, 0, 1);
+
+        const result = subject.getAge(new Date(today.getFullYear(), 5, 1));
+
+        expect(result).toStrictEqual(25);
+    });
+    it("calculates correct age when birthday has not passed this year", () => {
+        const
+            today = Date.today(),
+            subject = new Date(today.getFullYear() - 2, 11, 31);
+
+        const result = subject.getAge(new Date(today.getFullYear(), 1, 14));
+
+        expect(result).toStrictEqual(1);
+    });
+    it("calculates correct age when born yesterday (zero)", () => {
+        const
+            today = Date.today(),
+            subject = new Date(today.getTime() - (3600000 * 24));
+
+        const result = subject.getAge();
+
+        expect(result).toStrictEqual(0);
     });
 });
