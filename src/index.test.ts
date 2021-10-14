@@ -89,7 +89,7 @@ describe("addDays", function () {
         expect(result.getMinutes()).toEqual(subject.getMinutes());
         expect(result.getMilliseconds()).toEqual(subject.getMilliseconds());
     });
-    it("correctly handles positive values", () => {
+    it("correctly applies positive values", () => {
         const subject = new Date(2021, 0, 1);
 
         const result = subject.addDays(50);
@@ -102,7 +102,7 @@ describe("addDays", function () {
         expect(result.getMinutes()).toEqual(subject.getMinutes());
         expect(result.getMilliseconds()).toEqual(subject.getMilliseconds());
     });
-    it("correctly handles negative values", () => {
+    it("correctly applies negative values", () => {
         const subject = new Date(2021, 0, 1);
 
         const result = subject.addDays(-50);
@@ -180,6 +180,100 @@ describe("addMonths", function () {
     });
 });
 
+describe("addYears", function () {
+    it("returns a clone when passed zero", () => {
+        const subject = new Date(Date.now());
+
+        const result = subject.addYears(0);
+
+        expect(result).not.toBe(subject); // it should return a new instance
+        expect(result.getFullYear()).toEqual(subject.getFullYear());
+        expect(result.getMonth()).toEqual(subject.getMonth());
+        expect(result.getDate()).toEqual(subject.getDate());
+        expect(result.getHours()).toEqual(subject.getHours());
+        expect(result.getMinutes()).toEqual(subject.getMinutes());
+        expect(result.getMilliseconds()).toEqual(subject.getMilliseconds());
+    });
+    it("correctly applies positive values", () => {
+        const subject = new Date(Date.now());
+
+        const result = subject.addYears(5);
+
+        expect(result).not.toBe(subject); // it should return a new instance
+        expect(result.getFullYear()).toEqual(subject.getFullYear() + 5);
+        expect(result.getMonth()).toEqual(subject.getMonth());
+        expect(result.getDate()).toEqual(subject.getDate());
+        expect(result.getHours()).toEqual(subject.getHours());
+        expect(result.getMinutes()).toEqual(subject.getMinutes());
+        expect(result.getMilliseconds()).toEqual(subject.getMilliseconds());
+    });
+    it("correctly applies negative values", () => {
+        const subject = new Date(Date.now());
+
+        const result = subject.addYears(-101);
+
+        expect(result).not.toBe(subject); // it should return a new instance
+        expect(result.getFullYear()).toEqual(subject.getFullYear() - 101);
+        expect(result.getMonth()).toEqual(subject.getMonth());
+        expect(result.getDate()).toEqual(subject.getDate());
+        expect(result.getHours()).toEqual(subject.getHours());
+        expect(result.getMinutes()).toEqual(subject.getMinutes());
+        expect(result.getMilliseconds()).toEqual(subject.getMilliseconds());
+    });
+    it("corrects 29th Feb on non-leap year to 28th Feb", () => {
+        const subject = new Date(2000, 1, 29);
+
+        const result = subject.addYears(1);
+
+        expect(result).not.toBe(subject); // it should return a new instance
+        expect(result.getFullYear()).toEqual(2001);
+        expect(result.getMonth()).toEqual(1);
+        expect(result.getDate()).toEqual(28);
+        expect(result.getHours()).toEqual(subject.getHours());
+        expect(result.getMinutes()).toEqual(subject.getMinutes());
+        expect(result.getMilliseconds()).toEqual(subject.getMilliseconds());
+    });
+});
+
+describe("addMs", function () {
+    it("returns a clone when passed zero", () => {
+        const subject = new Date(-21000);
+
+        const result = subject.addMs(0);
+
+        expect(result).not.toBe(subject); // it should return a new instance
+        expect(result.getFullYear()).toEqual(subject.getFullYear());
+        expect(result.getMonth()).toEqual(subject.getMonth());
+        expect(result.getDate()).toEqual(subject.getDate());
+        expect(result.getHours()).toEqual(subject.getHours());
+        expect(result.getMinutes()).toEqual(subject.getMinutes());
+        expect(result.getMilliseconds()).toEqual(subject.getMilliseconds());
+    });
+    it("adds the correct number of milliseconds when passed a positive value", () => {
+        const subject = new Date(0);
+
+        const result = subject.addMs(1234567);
+
+        expect(result).not.toBe(subject); // it should return a new instance
+        expect(result.getTime()).toStrictEqual(subject.getTime() + 1234567);
+    });
+    it("subtracts the correct number of milliseconds when passed a negative value", () => {
+        const subject = new Date(0);
+
+        const result = subject.addMs(-12345678);
+
+        expect(result).not.toBe(subject); // it should return a new instance
+        expect(result.getTime()).toStrictEqual(subject.getTime() - 12345678);
+    });
+});
+
+//TODO: add seconds
+//TODO: add minutes
+//TODO: add hours
+//TODO: compare
+//TODO: isLeapYear, days in month (defers to static)
+//TODO: get age
+
 describe("isOnSameDayAs", function () {
     it("returns false when comparing to null or undefined", () => {
         const subject = new Date(Date.now());
@@ -209,6 +303,40 @@ describe("startOfDay", function () {
         expect(result.getFullYear()).toStrictEqual(subject.getFullYear());
         expect(result.getMonth()).toStrictEqual(subject.getMonth());
         expect(result.getDate()).toStrictEqual(subject.getDate());
+        expect(result.getHours()).toStrictEqual(0);
+        expect(result.getMinutes()).toStrictEqual(0);
+        expect(result.getSeconds()).toStrictEqual(0);
+        expect(result.getMilliseconds()).toStrictEqual(0);
+    });
+});
+
+describe("startOfMonth", function () {
+    it("returns a new date representing the first millisecond of the source date's month", () => {
+        const subject = new Date(0);
+
+        const result = subject.startOfMonth();
+
+        expect(result).not.toBe(subject); // it should return a new instance
+        expect(result.getFullYear()).toStrictEqual(subject.getFullYear());
+        expect(result.getMonth()).toStrictEqual(subject.getMonth());
+        expect(result.getDate()).toStrictEqual(1);
+        expect(result.getHours()).toStrictEqual(0);
+        expect(result.getMinutes()).toStrictEqual(0);
+        expect(result.getSeconds()).toStrictEqual(0);
+        expect(result.getMilliseconds()).toStrictEqual(0);
+    });
+});
+
+describe("startOfYear", function () {
+    it("returns a new date representing the first millisecond of the source date's year", () => {
+        const subject = new Date(0);
+
+        const result = subject.startOfYear();
+
+        expect(result).not.toBe(subject); // it should return a new instance
+        expect(result.getFullYear()).toStrictEqual(subject.getFullYear());
+        expect(result.getMonth()).toStrictEqual(0);
+        expect(result.getDate()).toStrictEqual(1);
         expect(result.getHours()).toStrictEqual(0);
         expect(result.getMinutes()).toStrictEqual(0);
         expect(result.getSeconds()).toStrictEqual(0);
@@ -350,9 +478,9 @@ describe("format", function () {
         expect(result).toMatch(/^1983-05-28T16:20:04.020 /i);
     });
     it("replaces all instances of repeated tokens", () => {
-        const subject = new Date(1983, 4, 28, 16, 20, 4, 20);
+        const subject = new Date(1983, 4, 28, 16, 20, 4, 200);
 
-        const result = subject.format("yy yy y y M M M d d d hh hh h h H H m m s s ff ff f f FFF FFF FF FF F F");
+        const result = subject.format("yy yy y y M M M d d d hh hh h h H H m m s s fff fff ff ff f f FFF FFF FF FF F F");
 
         expect(result).toMatch(/[\d\s]/i)
     });
@@ -404,6 +532,22 @@ describe("format", function () {
         const result = subject.format("hhtt ht", undefined, undefined, undefined, "午後");
 
         expect(result).toStrictEqual("02午後 2午");
+    });
+    it("correctly formats positive timezone offsets", () => {
+        const subject = new Date(Date.now());
+        subject.getTimezoneOffset = jest.fn().mockReturnValue(180);
+
+        const result = subject.format("K zzz zz z");
+
+        expect(result).toStrictEqual("+03:00 +03:00 03 3");
+    });
+    it("correctly formats negative timezone offsets", () => {
+        const subject = new Date(Date.now());
+        subject.getTimezoneOffset = jest.fn().mockReturnValue(-90);
+
+        const result = subject.format("K zzz zz z");
+
+        expect(result).toStrictEqual("-01:30 -01:30 -01 -1");
     });
     it("correctly applies an extremely non-standard format", () => {
         const subject = new Date("1983-05-28T00:00:00.000Z");
