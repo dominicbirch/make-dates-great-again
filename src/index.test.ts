@@ -50,6 +50,14 @@ describe("daysInMonth", function () {
         expect(() => Date.daysInMonth(2000, -1)).toThrow(new Error("month is out of bounds")));
     it("throws if month provided is greater than 11", () =>
         expect(() => Date.daysInMonth(2000, 12)).toThrow(new Error("month is out of bounds")));
+    it("defers to static implementation when called on an instance", () => {
+        const spy = jest.spyOn(Date, "daysInMonth"), subject = new Date(Date.now());
+
+        const result = subject.daysInMonth();
+
+        expect(spy).toHaveBeenCalledWith(subject.getFullYear(), subject.getMonth());
+        expect(result).toBeTruthy();
+    });
 });
 
 describe("daysBetween", function () {
@@ -72,6 +80,37 @@ describe("clone", function () {
 
         expect(result).not.toBe(subject); // it should return a new instance
         expect(result.getTime()).toEqual(subject.getTime());
+    });
+});
+
+describe("compare", function () {
+    it("returns 0 when the dates are equal", () => {
+        const subject = new Date(987654321), other = new Date(987654321);
+
+        const result = subject.compare(other);
+
+        expect(result).toStrictEqual(0);
+    });
+    it("returns 0 when the specified date is null", () => {
+        const subject = new Date(123456), other = null as any;
+
+        const result = subject.compare(other);
+
+        expect(result).toStrictEqual(0);
+    });
+    it("returns 1 when the source date is after the specified date", () => {
+        const subject = new Date(123456), other = new Date(0);
+
+        const result = subject.compare(other);
+
+        expect(result).toStrictEqual(1);
+    });
+    it("returns -1 when the source date is before the specified date", () => {
+        const subject = new Date(0), other = new Date(12345);
+
+        const result = subject.compare(other);
+
+        expect(result).toStrictEqual(-1);
     });
 });
 
@@ -267,12 +306,62 @@ describe("addMs", function () {
     });
 });
 
-//TODO: add seconds
+describe("addSeconds", function () {
+    it("returns a clone when passed zero", () => {
+        const subject = new Date(-21000);
+
+        const result = subject.addSeconds(0);
+
+        expect(result).not.toBe(subject); // it should return a new instance
+        expect(result.getFullYear()).toEqual(subject.getFullYear());
+        expect(result.getMonth()).toEqual(subject.getMonth());
+        expect(result.getDate()).toEqual(subject.getDate());
+        expect(result.getHours()).toEqual(subject.getHours());
+        expect(result.getMinutes()).toEqual(subject.getMinutes());
+        expect(result.getMilliseconds()).toEqual(subject.getMilliseconds());
+    });
+    it("adds the correct number of seconds when passed a positive value", () => {
+        const subject = new Date(0);
+
+        const result = subject.addSeconds(60);
+
+        expect(result).not.toBe(subject); // it should return a new instance
+        expect(result.getTime()).toStrictEqual(subject.getTime() + 60000);
+    });
+    it("subtracts the correct number of seconds when passed a negative value", () => {
+        const subject = new Date(0);
+
+        const result = subject.addSeconds(-180);
+
+        expect(result).not.toBe(subject); // it should return a new instance
+        expect(result.getTime()).toStrictEqual(subject.getTime() - 180000);
+    });
+});
+
 //TODO: add minutes
 //TODO: add hours
-//TODO: compare
-//TODO: isLeapYear, days in month (defers to static)
 
+
+describe("isLeapYear", function () {
+    it("defers to static implementation when called on an instance", () => {
+        const spy = jest.spyOn(Date, "isLeapYear"), subject = new Date(2020, 0, 1);
+
+        const result = subject.isLeapYear();
+
+        expect(spy).toHaveBeenCalledWith(2020);
+        expect(result).toBe(true);
+    });
+    it("returns true if the year is divisible by 4", () => {
+        const result = Date.isLeapYear(2000);
+
+        expect(result).toBe(true);
+    });
+    it("returns false if the year is not divisible by 4", () => {
+        const result = Date.isLeapYear(1337);
+
+        expect(result).toBe(false);
+    });
+})
 
 describe("isOnSameDayAs", function () {
     it("returns false when comparing to null or undefined", () => {
