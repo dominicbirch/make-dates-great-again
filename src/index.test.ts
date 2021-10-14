@@ -338,9 +338,69 @@ describe("addSeconds", function () {
     });
 });
 
-//TODO: add minutes
-//TODO: add hours
+describe("addMinutes", function () {
+    it("returns a clone when passed zero", () => {
+        const subject = new Date(-21000);
 
+        const result = subject.addMinutes(0);
+
+        expect(result).not.toBe(subject); // it should return a new instance
+        expect(result.getFullYear()).toEqual(subject.getFullYear());
+        expect(result.getMonth()).toEqual(subject.getMonth());
+        expect(result.getDate()).toEqual(subject.getDate());
+        expect(result.getHours()).toEqual(subject.getHours());
+        expect(result.getMinutes()).toEqual(subject.getMinutes());
+        expect(result.getMilliseconds()).toEqual(subject.getMilliseconds());
+    });
+    it("adds the correct number of minutes when passed a positive value", () => {
+        const subject = new Date(0);
+
+        const result = subject.addMinutes(10);
+
+        expect(result).not.toBe(subject); // it should return a new instance
+        expect(result.getTime()).toStrictEqual(subject.getTime() + 600000);
+    });
+    it("subtracts the correct number of minutes when passed a negative value", () => {
+        const subject = new Date(0);
+
+        const result = subject.addMinutes(-100);
+
+        expect(result).not.toBe(subject); // it should return a new instance
+        expect(result.getTime()).toStrictEqual(subject.getTime() - 6000000);
+    });
+});
+
+describe("addHours", function () {
+    it("returns a clone when passed zero", () => {
+        const subject = new Date(-21000);
+
+        const result = subject.addHours(0);
+
+        expect(result).not.toBe(subject); // it should return a new instance
+        expect(result.getFullYear()).toEqual(subject.getFullYear());
+        expect(result.getMonth()).toEqual(subject.getMonth());
+        expect(result.getDate()).toEqual(subject.getDate());
+        expect(result.getHours()).toEqual(subject.getHours());
+        expect(result.getMinutes()).toEqual(subject.getMinutes());
+        expect(result.getMilliseconds()).toEqual(subject.getMilliseconds());
+    });
+    it("adds the correct number of minutes when passed a positive value", () => {
+        const subject = new Date(0);
+
+        const result = subject.addHours(10);
+
+        expect(result).not.toBe(subject); // it should return a new instance
+        expect(result.getTime()).toStrictEqual(subject.getTime() + 36000000);
+    });
+    it("subtracts the correct number of minutes when passed a negative value", () => {
+        const subject = new Date(0);
+
+        const result = subject.addHours(-2);
+
+        expect(result).not.toBe(subject); // it should return a new instance
+        expect(result.getTime()).toStrictEqual(subject.getTime() - 7200000);
+    });
+});
 
 describe("isLeapYear", function () {
     it("defers to static implementation when called on an instance", () => {
@@ -647,7 +707,6 @@ describe("format", function () {
     });
 });
 
-//TODO: get age
 describe("getAge", function () {
     it("calculates correct age when birthday is today", () => {
         const
@@ -684,6 +743,15 @@ describe("getAge", function () {
         const result = subject.getAge(new Date(today.getFullYear(), 1, 14));
 
         expect(result).toStrictEqual(1);
+    });
+    it("calculates correct age when birthday is later this month", () => {
+        const
+            today = Date.today(),
+            subject = new Date(today.getFullYear() - 24, 4, 28);
+
+        const result = subject.getAge(new Date(today.getFullYear(), 4, 14));
+
+        expect(result).toStrictEqual(23);
     });
     it("calculates correct age when born yesterday (zero)", () => {
         const
