@@ -1,6 +1,5 @@
 {
   "name": "make-dates-great-again",
-  "type": "module",
   "version": "1.0.0",
   "description": "Supplements ts/js Date with some readable utilities.",
   "main": "./lib/index.js",
