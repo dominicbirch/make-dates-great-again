@@ -1,3 +1,4 @@
-name: "Bundle and push package"
 on: [push]
 jobs: 
+  - name: Test
+  - name: "Build and push"
