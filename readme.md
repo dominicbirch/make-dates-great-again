@@ -46,6 +46,7 @@ isBefore(other: Date): boolean;
 isBetween(start: Date, end: Date): boolean;
 
 clone(): Date;
+compare(other: Date): -1 | 0 | 1;
 
 addDays(days: number): Date;
 addMonths(months: number): Date;
@@ -54,8 +55,6 @@ addMs(ms: number): Date;
 addSeconds(seconds: number): Date;
 addMinutes(minutes: number): Date;
 addHours(hours: number): Date;
-
-compare(other: Date): -1 | 0 | 1;
 
 startOfDay(): Date;
 startOfMonth(): Date;
