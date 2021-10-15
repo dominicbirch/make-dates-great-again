@@ -4,11 +4,10 @@
   "version": "1.0.0",
   "description": "Supplements ts/js Date with some readable utilities.",
   "main": "./lib/index.js",
-  "module": "./lib/",
   "types": "./lib/index.d.ts",
   "scripts": {
     "test": "jest --coverage",
-    "prepack": "webpack"
+    "prepack": "webpack --mode production"
   },
   "author": "Dominic Birch <dominicbirch@outlook.com>",
   "homepage": "https://github.com/dominicbirch",
@@ -23,21 +22,16 @@
     "type": "git",
     "url": "https://github.com/dominicbirch/make-dates-great-again"
   },
-  "engines": {
-    "npm": ">= 6.14.8",
-    "node": ">= 12.6.0"
-  },
   "devDependencies": {
-    "@types/jest": "^26.0.13",
-    "@types/webpack": "^4.41.21",
-    "bundle-declarations-webpack-plugin": "0.0.3",
-    "clean-webpack-plugin": "^3.0.0",
-    "jest": "^26.4.2",
-    "ts-jest": "^26.3.0",
-    "ts-loader": "^8.0.2",
-    "ts-node": "^8.10.2",
-    "typescript": "^4.0.2",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "@types/jest": "^27.0.2",
+    "@types/webpack": "^5.28.0",
+    "bundle-declarations-webpack-plugin": "^2.2.2",
+    "jest": "^27.2.5",
+    "ts-jest": "^27.0.6",
+    "ts-loader": "^9.2.6",
+    "ts-node": "^10.3.0",
+    "typescript": "^4.4.4",
+    "webpack": "^5.58.2",
+    "webpack-cli": "^4.9.0"
   }
 }

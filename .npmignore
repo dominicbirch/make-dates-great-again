@@ -1,6 +1,8 @@
+tsconfig.json
+webpack.config.*
+jest.config.*
 .vscode/
-node_modules/
-src/
-/tsconfig.json
-/*.ts
-/*.tgz
+.storybook/
+.gitignore
+.npmignore
+*.stories.*

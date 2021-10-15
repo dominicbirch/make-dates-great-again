@@ -1,29 +1,34 @@
 {
-  "include": ["./src/**/*.*"],
-  "exclude": ["./webpack.config.ts"],
-  "compileOnSave": true,
+  "include": [
+      "src"
+  ],
+  "exclude": [
+      "node_modules",
+      "**/__tests__/*"
+  ],
   "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "baseUrl": "./src/",
-    "rootDir": "./src/",
-    "outDir": "./lib/",
-    "jsx": "react",
-    "declaration": true,
-    "strict": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "moduleResolution": "Node",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "target": "ES5",
-    "module": "ESNext"
+      "target": "ESNext",
+      "module": "ESNext",
+      "jsx": "react",
+      "esModuleInterop": true,
+      "resolveJsonModule": true,
+      "outDir": "./lib",
+      "rootDir": "./src",
+      "baseUrl": "./src",
+      "strict": true,
+      "isolatedModules": false,
+      "noImplicitAny": true,
+      "noImplicitThis": true,
+      "moduleResolution": "Node",
+      "typeRoots": [
+          "./node_modules/@types",
+          "./src/@types"
+      ]
   },
   "ts-node": {
-    "compilerOptions": {
-      "target": "ES6",
-      "module": "CommonJS"
-    }
+      "compilerOptions": {
+          "target": "ES2020",
+          "module": "CommonJS"
+      }
   }
 }
