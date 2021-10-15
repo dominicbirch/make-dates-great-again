@@ -1,4 +1,14 @@
-on: [push]
-jobs: 
-  - name: Test
-  - name: "Build and push"
+on:
+  push:
+    branches:
+    - main
+    - release/*
+    
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps: 
+    - uses: CultureHQ/actions-yarn@v1.0.1
+    - run: yarn install
+    - run: yarn test
