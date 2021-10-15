@@ -2,7 +2,10 @@ on:
   push:
     branches:
     - main
+    - master
     - release/*
+    - hotfix/*
+    - hotfixes/*
     
 jobs:
   test:
