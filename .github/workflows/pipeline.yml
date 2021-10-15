@@ -1,0 +1,3 @@
+name: "Bundle and push package"
+on: [push]
+jobs: 
