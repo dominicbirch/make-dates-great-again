@@ -66,7 +66,7 @@ declare global {
         /**Returns the age in _whole_ years of a person born on the source date.
          * @param atDate Optionally override the date at which the age is calculated; if undefined, the current date will be used.
          */
-        getAge(atDate?: Date): number;
+        age(atDate?: Date): number;
         /**Returns a value indicating whether the source date is on the same day as `other`
          * @param other The date to compare against.
          */
@@ -159,7 +159,7 @@ Date.prototype.daysInMonth = function (this) {
     return Date.daysInMonth(this.getFullYear(), this.getMonth());
 }
 
-Date.prototype.getAge = function (this, atDate = new Date(Date.now())) {
+Date.prototype.age = function (this, atDate = new Date(Date.now())) {
     const
         years = atDate.getFullYear() - this.getFullYear(),
         m = atDate.getMonth() - this.getMonth();

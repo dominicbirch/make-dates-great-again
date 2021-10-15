@@ -713,7 +713,7 @@ describe("getAge", function () {
             today = Date.today(),
             subject = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
 
-        const result = subject.getAge();
+        const result = subject.age();
 
         expect(result).toStrictEqual(18);
     });
@@ -722,7 +722,7 @@ describe("getAge", function () {
             today = Date.today(),
             subject = new Date(today.getFullYear() - 21, today.getMonth(), 1);
 
-        const result = subject.getAge(new Date(today.getFullYear(), today.getMonth(), 28));
+        const result = subject.age(new Date(today.getFullYear(), today.getMonth(), 28));
 
         expect(result).toStrictEqual(21);
     });
@@ -731,7 +731,7 @@ describe("getAge", function () {
             today = Date.today(),
             subject = new Date(today.getFullYear() - 25, 0, 1);
 
-        const result = subject.getAge(new Date(today.getFullYear(), 5, 1));
+        const result = subject.age(new Date(today.getFullYear(), 5, 1));
 
         expect(result).toStrictEqual(25);
     });
@@ -740,7 +740,7 @@ describe("getAge", function () {
             today = Date.today(),
             subject = new Date(today.getFullYear() - 2, 11, 31);
 
-        const result = subject.getAge(new Date(today.getFullYear(), 1, 14));
+        const result = subject.age(new Date(today.getFullYear(), 1, 14));
 
         expect(result).toStrictEqual(1);
     });
@@ -749,7 +749,7 @@ describe("getAge", function () {
             today = Date.today(),
             subject = new Date(today.getFullYear() - 24, 4, 28);
 
-        const result = subject.getAge(new Date(today.getFullYear(), 4, 14));
+        const result = subject.age(new Date(today.getFullYear(), 4, 14));
 
         expect(result).toStrictEqual(23);
     });
@@ -758,7 +758,7 @@ describe("getAge", function () {
             today = Date.today(),
             subject = new Date(today.getTime() - (3600000 * 24));
 
-        const result = subject.getAge();
+        const result = subject.age();
 
         expect(result).toStrictEqual(0);
     });
