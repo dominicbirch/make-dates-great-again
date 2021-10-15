@@ -10,13 +10,18 @@
     "test": "jest --coverage",
     "prepack": "webpack"
   },
-  "author": "Dominic Birch <> ",
-  "homepage": "",
+  "author": "Dominic Birch <dominicbirch@outlook.com>",
+  "homepage": "https://github.com/dominicbirch",
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "date",
+    "dates",
+    "DateTime",
+    "typescript"
+  ],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/dominicbirch/make-dates-great-again"
   },
   "engines": {
     "npm": ">= 6.14.8",

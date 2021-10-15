@@ -1,7 +1,7 @@
 # make-dates-great-again
 The built-in javascript date is often counter-intuitive; this library attempts to alleviate this by globally extending the built-in type with some helper methods.
 
-> Use with Caution~ 
+> __Use with Caution__~ 
 > 
 > Due to this library directly augmenting the built-in type, it's quite possible that it might collide/conflict with other functionality if another library operates on the same members, or if any of these are added to the built-in implementation in the future.
 
