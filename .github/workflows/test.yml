@@ -1,12 +1,4 @@
-on:
-  push:
-    branches:
-    - main
-    - master
-    - release/*
-    - hotfix/*
-    - hotfixes/*
-
+on: [push]
 jobs:
   test:
     name: Run tests

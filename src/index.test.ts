@@ -700,6 +700,7 @@ describe("format", function () {
     });
     it("correctly applies an extremely non-standard format", () => {
         const subject = new Date("1983-05-28T00:00:00.000Z");
+        subject.getTimezoneOffset = jest.fn().mockReturnValue(-60);
 
         const result = subject.format("$dddd~[MMMM],d\n\t@hh/h|mm&s.FFF/FF/F\n»K/zz/z");
 
