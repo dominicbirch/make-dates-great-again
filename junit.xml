@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="76" failures="0" errors="0" time="5.128">
+  <testsuite name="today" errors="0" failures="0" skipped="0" timestamp="2021-10-18T11:09:13" time="3.517" tests="76">
+    <testcase classname="today returns a date representing the start of the current day" name="today returns a date representing the start of the current day" time="0.005">
+    </testcase>
+    <testcase classname="daysInMonth returns the correct number of days for months of a leap year" name="daysInMonth returns the correct number of days for months of a leap year" time="0.002">
+    </testcase>
+    <testcase classname="daysInMonth returns the correct number of days for months of a non-leap year" name="daysInMonth returns the correct number of days for months of a non-leap year" time="0.003">
+    </testcase>
+    <testcase classname="daysInMonth throws if month provided is less than 0" name="daysInMonth throws if month provided is less than 0" time="0.054">
+    </testcase>
+    <testcase classname="daysInMonth throws if month provided is greater than 11" name="daysInMonth throws if month provided is greater than 11" time="0.004">
+    </testcase>
+    <testcase classname="daysInMonth defers to static implementation when called on an instance" name="daysInMonth defers to static implementation when called on an instance" time="0.002">
+    </testcase>
+    <testcase classname="daysBetween returns 0 for the same day" name="daysBetween returns 0 for the same day" time="0.001">
+    </testcase>
+    <testcase classname="daysBetween returns 1 for consecutive days" name="daysBetween returns 1 for consecutive days" time="0">
+    </testcase>
+    <testcase classname="clone returns a new date representing the same point in time" name="clone returns a new date representing the same point in time" time="0.001">
+    </testcase>
+    <testcase classname="compare returns 0 when the dates are equal" name="compare returns 0 when the dates are equal" time="0.001">
+    </testcase>
+    <testcase classname="compare returns 0 when the specified date is null" name="compare returns 0 when the specified date is null" time="0.001">
+    </testcase>
+    <testcase classname="compare returns 1 when the source date is after the specified date" name="compare returns 1 when the source date is after the specified date" time="0.001">
+    </testcase>
+    <testcase classname="compare returns -1 when the source date is before the specified date" name="compare returns -1 when the source date is before the specified date" time="0">
+    </testcase>
+    <testcase classname="addDays correctly handles zero" name="addDays correctly handles zero" time="0.001">
+    </testcase>
+    <testcase classname="addDays correctly applies positive values" name="addDays correctly applies positive values" time="0">
+    </testcase>
+    <testcase classname="addDays correctly applies negative values" name="addDays correctly applies negative values" time="0.001">
+    </testcase>
+    <testcase classname="addMonths correctly adds a positive value resulting in no change to the day or year" name="addMonths correctly adds a positive value resulting in no change to the day or year" time="0.001">
+    </testcase>
+    <testcase classname="addMonths correctly adds a negative value resulting in no change to the day or year" name="addMonths correctly adds a negative value resulting in no change to the day or year" time="0">
+    </testcase>
+    <testcase classname="addMonths correctly handles a positive value of more than 12 months" name="addMonths correctly handles a positive value of more than 12 months" time="0">
+    </testcase>
+    <testcase classname="addMonths correctly handles a negative value of more than 12 months" name="addMonths correctly handles a negative value of more than 12 months" time="0">
+    </testcase>
+    <testcase classname="addMonths correctly handles a positive add resulting in a date in the following year" name="addMonths correctly handles a positive add resulting in a date in the following year" time="0.001">
+    </testcase>
+    <testcase classname="addMonths correctly handles a negative add resulting in a date in the previous year" name="addMonths correctly handles a negative add resulting in a date in the previous year" time="0.001">
+    </testcase>
+    <testcase classname="addYears returns a clone when passed zero" name="addYears returns a clone when passed zero" time="0.001">
+    </testcase>
+    <testcase classname="addYears correctly applies positive values" name="addYears correctly applies positive values" time="0.001">
+    </testcase>
+    <testcase classname="addYears correctly applies negative values" name="addYears correctly applies negative values" time="0.001">
+    </testcase>
+    <testcase classname="addYears corrects 29th Feb on non-leap year to 28th Feb" name="addYears corrects 29th Feb on non-leap year to 28th Feb" time="0.001">
+    </testcase>
+    <testcase classname="addMs returns a clone when passed zero" name="addMs returns a clone when passed zero" time="0.001">
+    </testcase>
+    <testcase classname="addMs adds the correct number of milliseconds when passed a positive value" name="addMs adds the correct number of milliseconds when passed a positive value" time="0">
+    </testcase>
+    <testcase classname="addMs subtracts the correct number of milliseconds when passed a negative value" name="addMs subtracts the correct number of milliseconds when passed a negative value" time="0">
+    </testcase>
+    <testcase classname="addSeconds returns a clone when passed zero" name="addSeconds returns a clone when passed zero" time="0.001">
+    </testcase>
+    <testcase classname="addSeconds adds the correct number of seconds when passed a positive value" name="addSeconds adds the correct number of seconds when passed a positive value" time="0.001">
+    </testcase>
+    <testcase classname="addSeconds subtracts the correct number of seconds when passed a negative value" name="addSeconds subtracts the correct number of seconds when passed a negative value" time="0.001">
+    </testcase>
+    <testcase classname="addMinutes returns a clone when passed zero" name="addMinutes returns a clone when passed zero" time="0.001">
+    </testcase>
+    <testcase classname="addMinutes adds the correct number of minutes when passed a positive value" name="addMinutes adds the correct number of minutes when passed a positive value" time="0">
+    </testcase>
+    <testcase classname="addMinutes subtracts the correct number of minutes when passed a negative value" name="addMinutes subtracts the correct number of minutes when passed a negative value" time="0.001">
+    </testcase>
+    <testcase classname="addHours returns a clone when passed zero" name="addHours returns a clone when passed zero" time="0.001">
+    </testcase>
+    <testcase classname="addHours adds the correct number of minutes when passed a positive value" name="addHours adds the correct number of minutes when passed a positive value" time="0.001">
+    </testcase>
+    <testcase classname="addHours subtracts the correct number of minutes when passed a negative value" name="addHours subtracts the correct number of minutes when passed a negative value" time="0">
+    </testcase>
+    <testcase classname="isLeapYear defers to static implementation when called on an instance" name="isLeapYear defers to static implementation when called on an instance" time="0.001">
+    </testcase>
+    <testcase classname="isLeapYear returns true if the year is divisible by 4" name="isLeapYear returns true if the year is divisible by 4" time="0.001">
+    </testcase>
+    <testcase classname="isLeapYear returns false if the year is not divisible by 4" name="isLeapYear returns false if the year is not divisible by 4" time="0">
+    </testcase>
+    <testcase classname="isOnSameDayAs returns false when comparing to null or undefined" name="isOnSameDayAs returns false when comparing to null or undefined" time="0.001">
+    </testcase>
+    <testcase classname="isOnSameDayAs returns true when comparing to a different time on the same day" name="isOnSameDayAs returns true when comparing to a different time on the same day" time="0.001">
+    </testcase>
+    <testcase classname="startOfDay returns a new date representing the first millisecond of the same day" name="startOfDay returns a new date representing the first millisecond of the same day" time="0.001">
+    </testcase>
+    <testcase classname="startOfMonth returns a new date representing the first millisecond of the source date&apos;s month" name="startOfMonth returns a new date representing the first millisecond of the source date&apos;s month" time="0.004">
+    </testcase>
+    <testcase classname="startOfYear returns a new date representing the first millisecond of the source date&apos;s year" name="startOfYear returns a new date representing the first millisecond of the source date&apos;s year" time="0.001">
+    </testcase>
+    <testcase classname="isEqualTo returns false when comparing to null or undefined" name="isEqualTo returns false when comparing to null or undefined" time="0.001">
+    </testcase>
+    <testcase classname="isEqualTo returns true when comparing to another instance representing the same point in time" name="isEqualTo returns true when comparing to another instance representing the same point in time" time="0">
+    </testcase>
+    <testcase classname="isAfter returns false if the dates are equal" name="isAfter returns false if the dates are equal" time="0">
+    </testcase>
+    <testcase classname="isAfter returns false if the other date represents a time before the source date" name="isAfter returns false if the other date represents a time before the source date" time="0">
+    </testcase>
+    <testcase classname="isAfter returns true if the other date represents a time after the source date" name="isAfter returns true if the other date represents a time after the source date" time="0">
+    </testcase>
+    <testcase classname="isBefore returns false if the dates are equal" name="isBefore returns false if the dates are equal" time="0">
+    </testcase>
+    <testcase classname="isBefore returns false if the other date represents a time after the source date" name="isBefore returns false if the other date represents a time after the source date" time="0.001">
+    </testcase>
+    <testcase classname="isBefore returns true if the other date represents a time before the source date" name="isBefore returns true if the other date represents a time before the source date" time="0.001">
+    </testcase>
+    <testcase classname="isBetween returns false if start or end are null or undefined" name="isBetween returns false if start or end are null or undefined" time="0">
+    </testcase>
+    <testcase classname="isBetween returns false if the source date is outside of the specified range" name="isBetween returns false if the source date is outside of the specified range" time="0">
+    </testcase>
+    <testcase classname="isBetween returns true if the source date is equal to the start date" name="isBetween returns true if the source date is equal to the start date" time="0">
+    </testcase>
+    <testcase classname="isBetween returns true if the source date is equal to the end date" name="isBetween returns true if the source date is equal to the end date" time="0.001">
+    </testcase>
+    <testcase classname="isBetween returns true if the source date is inside of the specified range" name="isBetween returns true if the source date is inside of the specified range" time="0">
+    </testcase>
+    <testcase classname="isBetween returns true if the source date is inside of the specified range when end is before start" name="isBetween returns true if the source date is inside of the specified range when end is before start" time="0">
+    </testcase>
+    <testcase classname="format produces an empty string when provided with a null pattern" name="format produces an empty string when provided with a null pattern" time="0">
+    </testcase>
+    <testcase classname="format correctly applies a full ISO format pattern" name="format correctly applies a full ISO format pattern" time="0.001">
+    </testcase>
+    <testcase classname="format replaces all instances of repeated tokens" name="format replaces all instances of repeated tokens" time="0">
+    </testcase>
+    <testcase classname="format applies custom month names when provided" name="format applies custom month names when provided" time="0">
+    </testcase>
+    <testcase classname="format applies custom day names when provided" name="format applies custom day names when provided" time="0">
+    </testcase>
+    <testcase classname="format applies custom AM indicator when provided" name="format applies custom AM indicator when provided" time="0.001">
+    </testcase>
+    <testcase classname="format applies custom PM indicator when provided" name="format applies custom PM indicator when provided" time="0.001">
+    </testcase>
+    <testcase classname="format correctly formats positive timezone offsets" name="format correctly formats positive timezone offsets" time="0.001">
+    </testcase>
+    <testcase classname="format correctly formats negative timezone offsets" name="format correctly formats negative timezone offsets" time="0.001">
+    </testcase>
+    <testcase classname="format correctly applies an extremely non-standard format" name="format correctly applies an extremely non-standard format" time="0.002">
+    </testcase>
+    <testcase classname="getAge calculates correct age when birthday is today" name="getAge calculates correct age when birthday is today" time="0">
+    </testcase>
+    <testcase classname="getAge calculates correct age when birthday was a previous day this month" name="getAge calculates correct age when birthday was a previous day this month" time="0">
+    </testcase>
+    <testcase classname="getAge calculates correct age when birthday was a previous month" name="getAge calculates correct age when birthday was a previous month" time="0">
+    </testcase>
+    <testcase classname="getAge calculates correct age when birthday has not passed this year" name="getAge calculates correct age when birthday has not passed this year" time="0">
+    </testcase>
+    <testcase classname="getAge calculates correct age when birthday is later this month" name="getAge calculates correct age when birthday is later this month" time="0">
+    </testcase>
+    <testcase classname="getAge calculates correct age when born yesterday (zero)" name="getAge calculates correct age when born yesterday (zero)" time="0.001">
+    </testcase>
+  </testsuite>
+</testsuites>

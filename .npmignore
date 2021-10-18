@@ -6,3 +6,8 @@ jest.config.*
 .gitignore
 .npmignore
 *.stories.*
+src/
+.github/
+.coverage/
+junit.xml
+*.tgz

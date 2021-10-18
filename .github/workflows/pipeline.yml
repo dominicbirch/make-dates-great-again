@@ -1,0 +1,33 @@
+name: Run test suite
+on: [push]
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps: 
+    - uses: actions/checkout@master
+    - uses: CultureHQ/actions-yarn@v1.0.1
+    - run: yarn install
+    - run: yarn test --ci --updateSnapshot --reporters=default --reporters=jest-junit
+    - uses: EnricoMi/publish-unit-test-result-action@v1
+      with:
+        files: ./junit.xml
+  publish:
+    name: Publish package
+    needs: test
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request' && needs.test.result == 'success'      
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: CultureHQ/actions-yarn@v1.0.1
+    - run: yarn install
+    - run: yarn publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    - uses: actions/setup-node@v2
+        with:
+          registry-url: 'https://npm.pkg.github.com'
+    - run: yarn publish
+      with: 
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
