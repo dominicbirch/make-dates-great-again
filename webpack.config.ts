@@ -39,9 +39,15 @@ export default async function (env: Record<string | symbol, string>) {
         plugins: [
             new EnvironmentPlugin(),
             new BundleDeclarationsPlugin({
-                entry: path.resolve(__dirname, "src", "index.ts"),
+                entry: {
+                    filePath: path.resolve(__dirname, "src", "index.ts"),
+                    output: {
+                        inlineDeclareGlobals: true
+                    }
+                },
                 outFile: "index.d.ts",
-                removeRelativeReExport: true
+                removeRelativeReExport: true,
+
             })
         ],
         module: {
