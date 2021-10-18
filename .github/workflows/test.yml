@@ -6,7 +6,11 @@ on:
     - release/*
     - hotfix/*
     - hotfixes/*
-    
+
+defaults:
+  run: 
+    working-directory: ../../
+
 jobs:
   test:
     name: Run tests
