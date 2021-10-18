@@ -23,7 +23,6 @@
     "type": "git",
     "url": "https://github.com/dominicbirch/make-dates-great-again"
   },
-  "icon": "./trump-icon.jpg",
   "devDependencies": {
     "@types/jest": "^27.0.2",
     "@types/webpack": "^5.28.0",
