@@ -25,8 +25,8 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - uses: actions/setup-node@v2
-        with:
-          registry-url: 'https://npm.pkg.github.com'
+      with:
+        registry-url: 'https://npm.pkg.github.com'
     - run: yarn publish
       with: 
       env:
