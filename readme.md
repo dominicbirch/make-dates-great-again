@@ -1,3 +1,5 @@
+![build](https://github.com/dominicbirch/make-dates-great-again/workflows/master.yml/badge.svg)
+
 # make-dates-great-again
 The built-in javascript date is often counter-intuitive; this library attempts to alleviate this by globally extending the built-in type with some helper methods.
 

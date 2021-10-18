@@ -1,4 +1,4 @@
-name: Run test suite
+name: master
 on: [push]
 jobs:
   test:
