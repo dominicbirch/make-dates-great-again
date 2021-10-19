@@ -1,6 +1,4 @@
-![build](https://github.com/dominicbirch/make-dates-great-again/workflows/master/badge.svg)
-
-# make-dates-great-again
+# make-dates-great-again ![build](https://github.com/dominicbirch/make-dates-great-again/workflows/master/badge.svg) ![NPM version](https://badge.fury.io/js/make-dates-great-again.svg)
 The built-in javascript date is often counter-intuitive; this library attempts to alleviate this by globally extending the built-in type with some helper methods.
 
 > __Use with Caution__~ 
